@@ -1,0 +1,93 @@
+<div class="bookMeetingRoomMain">
+  <div class="customTabs">
+    <button (click)="bookMeetingRoom()">Book a Meeting Room</button>
+    <button (click)="viewSchedulesofaRoom()">View All Schedules for a particular room</button>
+    <button (click)="deleteaMeeting()">Delete the scheduled meeting</button>
+    <button (click)="showStatusByTimeslot()">Show current status of all the meeting rooms for the selected time slot</button>
+  </div>
+  <div class="tabContent">
+    <div class="bookanAppoinment" *ngIf="bookMeetingFlag">
+          <form [formGroup]="bookMeetingroomForm">
+            <div class="formField">
+              <label class="input_label">User Name</label>
+              <input type="text" placeholder="User Name" formControlName="userName">
+            </div>
+            <div class="formField">
+              <label class="input_label" for="date">Date</label>
+              <input type="date" id="date" name="date" formControlName="date">
+            </div>
+            <div class="formField">
+              <label class="input_label" for="appt">Select a time:</label>
+              <select name="timeFrom" id="timeFrom" formControlName="timeFrom">
+                <option *ngFor="let timefrom of timefromArray" [ngValue]="timefrom.value">{{timefrom.label}}</option>
+              </select>
+              <label class="timeSeparator"> to </label>
+              <select name="timeTo" id="timeTo" formControlName="timeTo" (change)="selectToTime()">
+                <option *ngFor="let timeto of timetoArray" [ngValue]="timeto.value">{{timeto.label}}</option>
+              </select>
+            </div>
+            <div class="formField">
+              <label class="input_label" for="meetingRoom">Select a time:</label>
+                <div class="meetingRoom">
+                    <label class="radioTick small">
+                      <input name="meetingRoom" type="radio" value="1" formControlName='meetingRoom'>
+                      <div class="checkmark"> Meeting Room 1 </div>
+                    </label>
+                    <label class="radioTick small">
+                      <input name="meetingRoom" type="radio" value="2" formControlName='meetingRoom'>
+                      <div class="checkmark"> Meeting Room 2 </div>
+                    </label>
+                    <label class="radioTick small">
+                      <input name="meetingRoom" type="radio" value="3" formControlName='meetingRoom'>
+                      <div class="checkmark"> Meeting Room 3 </div>
+                    </label>
+                    <label class="radioTick small">
+                      <input name="meetingRoom" type="radio" value="4" formControlName='meetingRoom'>
+                      <div class="checkmark"> Meeting Room 4 </div>
+                    </label>
+                    <label class="radioTick small">
+                      <input name="meetingRoom" type="radio" value="5" formControlName='meetingRoom'>
+                      <div class="checkmark"> Meeting Room 5 </div>
+                    </label>
+                    <label class="radioTick small">
+                      <input name="meetingRoom" type="radio" value="6" formControlName='meetingRoom'>
+                      <div class="checkmark"> Meeting Room 6 </div>
+                    </label>
+                    <label class="radioTick small">
+                      <input name="meetingRoom" type="radio" value="7" formControlName='meetingRoom'>
+                      <div class="checkmark"> Meeting Room 7 </div>
+                    </label>
+                    <label class="radioTick small">
+                      <input name="meetingRoom" type="radio" value="8" formControlName='meetingRoom'>
+                      <div class="checkmark"> Meeting Room 8 </div>
+                    </label>
+                    <label class="radioTick small">
+                      <input name="meetingRoom" type="radio" value="9" formControlName='meetingRoom'>
+                      <div class="checkmark"> Meeting Room 9 </div>
+                    </label>
+                    <label class="radioTick small">
+                      <input name="meetingRoom" type="radio" value="10" formControlName='meetingRoom'>
+                      <div class="checkmark"> Meeting Room 10 </div>
+                    </label>
+                </div>
+            </div>
+            <div class="formField">
+              <label class="input_label" for="date">Agenda</label>
+              <textarea name="" id="" cols="30" rows="10" formControlName='agenda'></textarea>
+            </div>
+            <button type="submit" (click)="bookRoom()">Book Meeting Room</button>
+          </form>
+    </div>
+    <div class="bookanAppoinment" *ngIf="viewSchedulesofaRoomFlag">
+      <div *ngFor="let booking of allbookings;let i = index">
+        {{booking.value | json}}
+      </div>
+    </div>
+    <div class="bookanAppoinment" *ngIf="deleteaMeetingFlag">
+      
+    </div>
+    <div class="bookanAppoinment" *ngIf="showStatusByTimeslotFlag">
+      
+    </div>
+  </div>
+</div>
